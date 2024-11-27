@@ -1,22 +1,25 @@
 import express from 'express';
 import type { NextFunction, Request, Response, Express } from 'express';
-import Redis from 'ioredis';
 import IoRedisStore from 'route-cache/ioRedisStore';
 import routeCache from 'route-cache';
+import cookieParser from 'cookie-parser';
 
 import taskRoutes from './tasks';
+import authRoutes from './auth';
 import invalidateRoutes from './invalidate';
+import { redisClient } from './constants';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-const redisClient = new Redis(6379, '127.0.0.1');
 const cacheStore = new IoRedisStore(redisClient);
-routeCache.config({cacheStore})
+routeCache.config({cacheStore});
 
+app.use(cookieParser());
 app.use(express.json());
 app.use('/tasks', taskRoutes);
 app.use('/invalidate', invalidateRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, Typescript Express!');

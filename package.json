@@ -1,0 +1,27 @@
+{
+  "name": "jwt-middleware",
+  "version": "1.0.0",
+  "description": "jwt token middleware",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc",
+    "serve": "node dist/index.js"
+  },
+  "author": "Juan Chen",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "@types/route-cache": "^0.5.5",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "express-validator": "^7.2.0",
+    "ioredis": "^5.4.1",
+    "route-cache": "^0.7.0"
+  }
+}
